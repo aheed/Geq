@@ -38,6 +38,10 @@ To do:
   Make Spectrum client start "recording" from *.monitor device on startup
   Try the modified ffplay approach again but skip all but the lowest 1000 Hz
     Use max (like the Qt Spectrum app) instead of average for each frequency band?
+  Add ffplay.c changes to source control
+  Write overview to Readme file
+  Write python app for scrolling text
+
 
 feature:
   adaptive display level

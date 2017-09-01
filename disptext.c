@@ -13,7 +13,7 @@ $ ./disptext <server ip> <display text> [offset]
 #include "ldispledconfig.h"
 
 
-#define MAX_BRIGHTNESS 64
+#define MAX_BRIGHTNESS 128 //64
 
 static unsigned char leddata[LDISP_FRAME_SIZE] = {0};
 
@@ -56,7 +56,7 @@ int main(int argc, char *argv[]) {
   int startx = 0;
   int x, y, charindex, xc, yc, maxxc, textlength;
   long int charmatrix;
-  char * pszDisplayText;
+  unsigned char * pszDisplayText;
   
   if(argc < 3)
   {
@@ -76,6 +76,10 @@ int main(int argc, char *argv[]) {
   }
 
   // Initialize font
+  for(i=0; i<256; i++)
+  {
+    myfont[i] = 0;
+  }
 
     //FIXME: change from 3 dots wide characters to 4 or 5 dots
 
@@ -167,6 +171,15 @@ int main(int argc, char *argv[]) {
 
   myfont[':'] = 0x0008020;
   myfont['.'] = 0x0100000;
+  myfont['/'] = 0x0011100;
+
+  //myfont[176] = 0x00008A2;  //°
+  //myfont[176] = 0x0032526;  //°
+  myfont[176] = 0x0001926;  //°
+
+  myfont[133] = 0x097A4C6;  //Å
+  myfont[132] = 0x097A4C9;  //Ä
+  myfont[150] = 0x064A4C9;  //Ö
 
   // Set starting x coordinate
   if(argc >= 4)
@@ -192,6 +205,17 @@ int main(int argc, char *argv[]) {
   for(charindex = 0; charindex < textlength; charindex++)
   {
     //Get 5x5 matrix from font
+    printf("%d\n", pszDisplayText[charindex]);
+
+    //Special case: [SPACE]
+    //  only advance position
+    if(pszDisplayText[charindex] == ' ')
+    {
+      maxxc += 4;
+      startx = maxxc;
+      continue;
+    }
+
     charmatrix = myfont[pszDisplayText[charindex]];
 
     // For each dot in matrix
@@ -242,7 +266,10 @@ int main(int argc, char *argv[]) {
     }
    
     // update start x coordinate
-    startx = maxxc + 2;
+    if(maxxc >= startx)
+    {
+      startx = maxxc + 2;
+    }
 
   }//for each text character
 
