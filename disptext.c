@@ -13,7 +13,7 @@ $ ./disptext <server ip> <display text> [offset]
 #include "ldispledconfig.h"
 
 
-#define MAX_BRIGHTNESS 128 //64
+#define MAX_BRIGHTNESS 64
 
 static unsigned char leddata[LDISP_FRAME_SIZE] = {0};
 
@@ -153,13 +153,43 @@ int main(int argc, char *argv[]) {
   myfont['T'] = 0x042109F;
   myfont['U'] = 0x0E8C631;
   myfont['V'] = 0x0454631;
+  myfont['W'] = 0x11DD631;
   myfont['X'] = 0x1151151;
   myfont['Y'] = 0x0421151;
   myfont['Z'] = 0x1F1111F;
+
+  myfont['a'] = myfont['A'];
+  myfont['b'] = myfont['B'];
+  myfont['c'] = myfont['C'];
+  myfont['d'] = myfont['D'];
+  myfont['e'] = myfont['E'];
+  myfont['f'] = myfont['F'];
+  myfont['g'] = myfont['G'];
+  myfont['h'] = myfont['H'];
+  myfont['i'] = myfont['I'];
+  myfont['j'] = myfont['J'];
+  myfont['k'] = myfont['K'];
+  myfont['l'] = myfont['L'];
+  myfont['m'] = myfont['M'];
+  myfont['n'] = myfont['N'];
+  myfont['o'] = myfont['O'];
+  myfont['p'] = myfont['P'];
+  myfont['q'] = myfont['Q'];
+  myfont['r'] = myfont['R'];
+  myfont['s'] = myfont['S'];
+  myfont['t'] = myfont['T'];
+  myfont['u'] = myfont['U'];
+  myfont['v'] = myfont['V'];
+  myfont['w'] = myfont['W'];
+  myfont['x'] = myfont['X'];
+  myfont['y'] = myfont['Y'];
+  myfont['z'] = myfont['Z'];
+
+
 //-----
 
   myfont['0'] = 0x0F4A52F;
-  myfont['1'] = 0x0210843;
+  myfont['1'] = 0x0210842;
   myfont['2'] = 0x0F0BD0F;
   myfont['3'] = 0x0F43D0F;
   myfont['4'] = 0x0843D29;
@@ -171,7 +201,13 @@ int main(int argc, char *argv[]) {
 
   myfont[':'] = 0x0008020;
   myfont['.'] = 0x0100000;
-  myfont['/'] = 0x0011100;
+  myfont['/'] = 0x0008880;
+  myfont['-'] = 0x0001C00;
+  myfont['+'] = 0x0011c40;
+
+  myfont['"'] = 0x000000A;
+  myfont['('] = 0x0208422;
+  myfont[')'] = 0x0110841;
 
   //myfont[176] = 0x00008A2;  //°
   //myfont[176] = 0x0032526;  //°
@@ -180,6 +216,12 @@ int main(int argc, char *argv[]) {
   myfont[133] = 0x097A4C6;  //Å
   myfont[132] = 0x097A4C9;  //Ä
   myfont[150] = 0x064A4C9;  //Ö
+
+  myfont[165] = myfont[133];  //å
+  myfont[164] = myfont[132];  //ä
+  myfont[182] = myfont[150];  //ö
+
+  myfont[169] = myfont['E']; //é
 
   // Set starting x coordinate
   if(argc >= 4)
