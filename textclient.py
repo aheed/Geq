@@ -9,13 +9,19 @@ import commands
 import time
 from datetime import date, datetime
 import urllib
+import ledclient
 
 """Display scrolling text etc
 """
 
 def disptext(server, outputtext, offset):
-  disptextcommand = "./disptext " + server + " \"" + outputtext + "\" " + str(offset)
-  (dispcmdstatus, dispcmdoutput) = commands.getstatusoutput(disptextcommand)
+#  disptextcommand = "./disptext " + server + " \"" + outputtext + "\" " + str(offset)
+#  (dispcmdstatus, dispcmdoutput) = commands.getstatusoutput(disptextcommand)
+
+  ledclient.connect(server)
+  someleddata = ledclient.texttoleddata(outputtext, offset)
+  ledclient.transmit(someleddata)
+  ledclient.waitforAck()
 
 def scrolltext(server, msgtext):
   maxoffset = 22

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# -*- coding: latin-1 -*-
+# -*- coding: utf-8 -*-
 
 
 import ledclient
@@ -25,8 +25,11 @@ def main():
 
 #  ledclient.sendleddata(HOST, leddata)
 
+
   ledclient.connect(HOST)
-  ledclient.transmit(leddata)
+  #ledclient.transmit(leddata)
+  someleddata = ledclient.texttoleddata(":\"é°", 2)
+  ledclient.transmit(someleddata)
   ledclient.waitforAck()
 
 
