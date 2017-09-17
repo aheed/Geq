@@ -83,6 +83,7 @@ myfont['9'] = 0x0843D2F
 
 myfont[':'] = 0x0008020
 myfont['.'] = 0x0100000
+myfont[','] = 0x0110000
 myfont['/'] = 0x0008880
 myfont['-'] = 0x0001C00
 myfont['+'] = 0x0011c40
@@ -238,7 +239,7 @@ def transmit(leddata):
 def waitforAck():
   global s
   data = s.recv(1024)
-  s.close()
+  #s.close()
 
   recstring = "got " + repr(data) + " (len:" + str(len(data)) + ")"
   #print recstring
